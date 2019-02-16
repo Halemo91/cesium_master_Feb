@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Placemark>
+    <name>The Cube - extruded from ground</name>
+    <Polygon>
+      <extrude>1</extrude>
+      <altitudeMode>relativeToGround</altitudeMode>
+      <outerBoundaryIs>        
+        <LinearRing>
+          <coordinates>   <!-- right hand rule: https://developers.google.com/kml/documentation/kmlreference?hl=cs#polygon-->
+           13.3761524993111,49.7401011145834,1000
+           13.3897280864525,49.7401011145834,1000
+           13.3897280864525,49.7492856863423,1000
+           13.3761524993111,49.7492856863423,1000
+           13.3761524993111,49.7401011145834,1000  <!-- the same coordinate as the first one-->
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>      
+    </Polygon>
+  </Placemark>
+</kml>
