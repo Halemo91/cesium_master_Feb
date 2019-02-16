@@ -11,11 +11,11 @@ insetViewer.scene.morphTo2D(0);
 
   var initialPosition = Cesium.Cartesian3.fromDegrees(  -73.897766864199923, 40.733945631808005, 101.24);
   var initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(21.27879878293835, -21.34390550872461, 0.0716951918898415);
-  var camerView = viewer.scene.camera.setView({
-     destination: initialPosition,
-     orientation: initialOrientation,
-     endTransform: Cesium.Matrix4.IDENTITY
-  });
+  // var camerView = viewer.scene.camera.setView({
+  //    destination: initialPosition,
+  //    orientation: initialOrientation,
+  //    endTransform: Cesium.Matrix4.IDENTITY
+  // });
   var camerView = insetViewer.scene.camera.setView({
      destination: initialPosition,
      orientation: initialOrientation,
@@ -30,15 +30,26 @@ insetViewer.scene.morphTo2D(0);
 
 
    });
-       promise.then(function(dataSource) {
-       viewer.dataSources.add(dataSource);
-       var entities = dataSource.entities.values;
-       for (var i = 0; i < entities.length; i++) {
-          var entity = entities[i];
-          console.log(entity)
-          //Extrude the polygon based on any attribute you desire
-          entity.polygon.extrudedHeight = 100000.0;
+promise.then(function(dataSource) {
+   viewer.dataSources.add(dataSource);
 
-      }
 
-      });
+   var entities = dataSource.entities.values;
+   for (var i = 0; i < entities.length; i++) {
+      var entity = entities[i];
+      console.log(entity)
+      viewer.zoomTo(entities[i]);
+      //Extrude the polygon based on any attribute you desire
+      entity.polygon.extrudedHeight = 100000.0;
+  }
+});
+// An entity object which will hold info about the currently selected feature for infobox display
+// var selectedEntity = new Cesium.Entity();
+// console.log(selectedEntity)
+// viewer.selectedEntity = selectedEntity;
+//
+// selectedEntity.name = 'featureName';
+// selectedEntity.description = 'Loading ASSSSS';
+function aha() {
+  console.log('ssssssssssssss')
+}

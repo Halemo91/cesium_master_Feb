@@ -7,6 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <title>New York Buildings roofs</title>
   <script src="../Build/Cesium/Cesium.js"></script>
   <style>
@@ -24,11 +27,24 @@
           border: 1px solid #fff;
           box-shadow: 0 0 4px #fff;
       }
+      .toolbar-left {
+         display: block;
+         position: absolute;
+         top: 5px;
+         left: 5px;
+     }
   </style>
 </head>
 <body>
   <div id="cesiumContainer"></div>
+  <div class="toolbar-left">
+    <button class="btn btn-success" onclick="aha();">Correct!</button>
+    <button class="btn btn-danger" onclick="aha();">False!</button><br><br>
+    <button class="btn btn-primary" style="width: 140px;"onclick="aha();">Next</button>
+
+</div>
   <div id="insetCesiumContainer"></div>
+
   <script src="HelloWorld.js">
 
   </script>
