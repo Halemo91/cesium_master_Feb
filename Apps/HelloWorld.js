@@ -21,8 +21,8 @@ insetViewer.scene.morphTo2D(0);
      orientation: initialOrientation,
      endTransform: Cesium.Matrix4.IDENTITY
   });
-
-  var promise = Cesium.GeoJsonDataSource.load('sattawat-myBuildings_fefe.geojson', {
+var aha = [];
+  var promise = Cesium.GeoJsonDataSource.load('sattawat-myBuildings_polygon.geojson', {
     stroke: Cesium.Color.BLACK.withAlpha(0.5),
     fill: Cesium.Color.GREY,
     strokeWidth: 3,
@@ -32,9 +32,12 @@ insetViewer.scene.morphTo2D(0);
    });
 promise.then(function(dataSource) {
    viewer.dataSources.add(dataSource);
-
+// aha.push(dataSource.entities.values)
 
    var entities = dataSource.entities.values;
+   aha = entities;
+   console.log(aha)
+
    for (var i = 0; i < entities.length; i++) {
       var entity = entities[i];
       console.log(entity)
@@ -50,6 +53,16 @@ promise.then(function(dataSource) {
 //
 // selectedEntity.name = 'featureName';
 // selectedEntity.description = 'Loading ASSSSS';
-function aha() {
-  console.log('ssssssssssssss')
+function correct() {
+  alert("The selected building saved as false!");
+};
+function falsee() {
+  alert("The selected building saved as false!");
+
+};
+var count = 0;
+function next(){
+  count +=100;
+  console.log(count)
+    viewer.zoomTo(aha[count]);
 }
