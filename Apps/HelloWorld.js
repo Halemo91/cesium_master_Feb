@@ -3,11 +3,11 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 });
 var insetViewer = new Cesium.Viewer('insetCesiumContainer', {
   navigationHelpButton: false, animation: false, timeline: false,
-  geocoder: false, baseLayerPicker: false, sceneModePicker: false
+
 });
 
 // Make the inset window display in 2D, to show it's different.
-insetViewer.scene.morphTo2D(0);
+//insetViewer.scene.morphTo2D(0);
 
   var initialPosition = Cesium.Cartesian3.fromDegrees(  -73.897766864199923, 40.733945631808005, 101.24);
   var initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(21.27879878293835, -21.34390550872461, 0.0716951918898415);
@@ -23,16 +23,16 @@ insetViewer.scene.morphTo2D(0);
   });
 var aha = [];
   var promise = Cesium.GeoJsonDataSource.load('sattawat-myBuildings_polygon.geojson', {
-    stroke: Cesium.Color.BLACK.withAlpha(0.5),
-    fill: Cesium.Color.GREY,
+    stroke: Cesium.Color.BLACK.withAlpha(1.5),
+    //fill: Cesium.Color.GREY,
     strokeWidth: 3,
-    markerSymbol: '*'
+  //  markerSymbol: '*'
 
 
    });
 promise.then(function(dataSource) {
-   viewer.dataSources.add(dataSource);
-// aha.push(dataSource.entities.values)
+insetViewer.dataSources.add(dataSource);
+viewer.dataSources.add(dataSource);
 
    var entities = dataSource.entities.values;
    aha = entities;
@@ -41,28 +41,30 @@ promise.then(function(dataSource) {
    for (var i = 0; i < entities.length; i++) {
       var entity = entities[i];
       console.log(entity)
+      insetViewer.zoomTo(entities[i]);
       viewer.zoomTo(entities[i]);
+
       //Extrude the polygon based on any attribute you desire
       entity.polygon.extrudedHeight = 100000.0;
   }
+  if (insetViewer.dataSources.contains(dataSource)) {
+          insetViewer.dataSources.remove(dataSource);
+      }
 });
-// An entity object which will hold info about the currently selected feature for infobox display
-// var selectedEntity = new Cesium.Entity();
-// console.log(selectedEntity)
-// viewer.selectedEntity = selectedEntity;
-//
-// selectedEntity.name = 'featureName';
-// selectedEntity.description = 'Loading ASSSSS';
+
 function correct() {
-  alert("The selected building saved as false!");
+  alert("The selected building class saved as correct!");
 };
 function falsee() {
-  alert("The selected building saved as false!");
+  alert("The selected building class saved as false!");
 
 };
 var count = 0;
 function next(){
   count +=100;
   console.log(count)
+  //TODO (count % 10)
     viewer.zoomTo(aha[count]);
+    insetViewer.zoomTo(aha[count]);
+
 }
